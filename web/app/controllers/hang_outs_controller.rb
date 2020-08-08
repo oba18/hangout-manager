@@ -11,6 +11,8 @@ class HangOutsController < ApplicationController
   # GET /hang_outs/1.json
   def show
     @like = Like.new
+    @comments = @hang_out.comments
+    @comment = current_user.comments.new
   end
 
   # GET /hang_outs/new
