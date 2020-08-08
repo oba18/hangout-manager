@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
+  has_many :likes, dependent: :destroy
+  has_many :liked_hang_outs, through: :likes, source: :hang_outs
   enum sex: { man: 0, woman: 1 }
 
   def follow(other_user)
@@ -23,6 +25,10 @@ class User < ApplicationRecord
 
   def following?(other_user)
     self.followings.include?(other_user)
+  end
+
+  def already_liked?(hang_out)
+    self.likes.exists?(hang_out_id: hang_out.id)
   end
 
 end

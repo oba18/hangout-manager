@@ -16,7 +16,7 @@
   <tbody>
     <% current_user.hang_outs.each do |hang_out| %>
       <tr>
-        <td><%= hang_out.name %></td>
+        <td><%= link_to "#{hang_out.name}", "http://localhost:3000/hang_outs/#{hang_out.id}" %></td>
         <td><%= hang_out.date %></td>
         <td><%= hang_out.start_time %></td>
         <td><%= hang_out.end_time %></td>
@@ -67,6 +67,31 @@
         <td><%= follower.name %></td>
         <td><%= follower.age %></td>
         <td><%= follower.sex %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<h2>いいねしたあそび</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>あそび</th>
+      <th>日付</th>
+      <th>開始</th>
+      <th>終了</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.likes.each do |like| %>
+      <tr>
+        <td><%= like.hang_out.name %></td>
+        <td><%= like.hang_out.date %></td>
+        <td><%= like.hang_out.start_time %></td>
+        <td><%= like.hang_out.end_time %></td>
       </tr>
     <% end %>
   </tbody>

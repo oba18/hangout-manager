@@ -10,6 +10,7 @@ class HangOutsController < ApplicationController
   # GET /hang_outs/1
   # GET /hang_outs/1.json
   def show
+    @like = Like.new
   end
 
   # GET /hang_outs/new

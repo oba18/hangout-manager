@@ -11,8 +11,10 @@
       <th>Start time</th>
       <th>~</th>
       <th>End time</th>
-      <th></th>
-      <th colspan="3"></th>
+      <th>いいね</th>
+    <% if user_signed_in? %>
+      <th>フォロー</th>
+  <% end %>
     </tr>
   </thead>
 
@@ -20,14 +22,22 @@
     <% @hang_outs.each do |hang_out| %>
       <tr>
         <td><%= hang_out.user.name %></td>
-        <td><%= hang_out.name %></td>
+        <td><%= link_to "#{hang_out.name}", "http://localhost:3000/hang_outs/#{hang_out.id}" %></td>
         <td><%= hang_out.date %></td>
         <td><%= hang_out.start_time %></td>
         <td>~</td>
         <td><%= hang_out.end_time %></td>
+        <td><%= hang_out.likes.count %></td>
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(hang_out) %>
+        <td><%= button_to 'いいねを取り消す', hang_out_like_path(hang_out, current_user), method: :delete %></td>
+      <% else %>
+        <td><%= button_to 'いいね', hang_out_likes_path(hang_out) %></td>
+      <% end %>
         <td><%= render 'relationships/follow_button', user: hang_out.user %></td>
       </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 
