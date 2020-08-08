@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :hang_outs
+  resources :hang_outs do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create, :destroy]
   get 'mypage/show'
   root 'welcome#welcome'

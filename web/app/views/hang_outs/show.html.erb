@@ -1,29 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @hang_out.name %>
-</p>
+<h2><%= @hang_out.name %></h2>
+<hr>
+<h3>
+  <%= @hang_out.user.name %>のあそび
+</h3>
 
+<br>
 <p>
-  <strong>Date:</strong>
+  <strong>日付:</strong>
   <%= @hang_out.date %>
 </p>
 
 <p>
-  <strong>Start time:</strong>
+  <strong>開始時間:</strong>
   <%= @hang_out.start_time %>
 </p>
 
 <p>
-  <strong>End time:</strong>
+  <strong>終了時間:</strong>
   <%= @hang_out.end_time %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @hang_out.user_id %>
-</p>
+<br>
+<h2>いいねした人</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>年齢</th>
+      <th>性別</th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @hang_out.liked_users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td><%= user.sex %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if current_user.id == @hang_out.user.id %>
 <%= link_to 'Edit', edit_hang_out_path(@hang_out) %> |
-<%= link_to 'Back', 'http://localhost:3000/user/#{current_user.id}' %>
+<% end %>
+<%= link_to 'Back', "http://localhost:3000/hang_outs" %>
