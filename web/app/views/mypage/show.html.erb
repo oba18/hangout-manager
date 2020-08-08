@@ -1,4 +1,31 @@
 <h1>Hello <%= current_user.name %> </h1>
-<p><%= current_user.id %></p>
-<p><%= current_user.age %></p>
-<p><%= current_user.sex %></p>
+<p>年齢：<%= current_user.age %></p>
+<p>性別：<%= current_user.sex %></p>
+<hr>
+<h2><%= current_user.name %>の遊びの予定</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>あそび</th>
+      <th>Date</th>
+      <th>Start time</th>
+      <th>~</th>
+      <th>End time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.hang_outs.each do |hang_out| %>
+      <tr>
+        <td><%= hang_out.name %></td>
+        <td><%= hang_out.date %></td>
+        <td><%= hang_out.start_time %></td>
+        <td>~</td>
+        <td><%= hang_out.end_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<%= link_to "あそびを追加する", new_hang_out_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="text-align:center">みんなのあそび</h1>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Start time</th>
+      <th>~</th>
+      <th>End time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hang_outs.each do |hang_out| %>
+      <tr>
+        <td><%= hang_out.user.name %></td>
+        <td><%= hang_out.name %></td>
+        <td><%= hang_out.date %></td>
+        <td><%= hang_out.start_time %></td>
+        <td>~</td>
+        <td><%= hang_out.end_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'あそびを追加する', new_hang_out_path %>

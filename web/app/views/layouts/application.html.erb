@@ -13,6 +13,14 @@
       <%= link_to "AI ×あそび!!!", "http://localhost:3000", id: "logo", class: "navbar-brand" %>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          <%= link_to "みんなのあそび", "http://localhost:3000/hang_outs", class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "マイページ", "http://localhost:3000/user/#{current_user.id}", class: "nav-link" %>
+        </li>
+        <% end %>
+        <li class="nav-item">
           <%= link_to "新規登録", "http://localhost:3000/signup", class: "nav-link" %>
         </li>
         <li class="nav-item">
