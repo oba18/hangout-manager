@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :hang_outs
+  resources :relationships, only: [:create, :destroy]
   get 'mypage/show'
   root 'welcome#welcome'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -11,6 +11,7 @@
       <th>Start time</th>
       <th>~</th>
       <th>End time</th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= hang_out.start_time %></td>
         <td>~</td>
         <td><%= hang_out.end_time %></td>
+        <td><%= render 'relationships/follow_button', user: hang_out.user %></td>
       </tr>
     <% end %>
   </tbody>
