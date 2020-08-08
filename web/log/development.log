@@ -1170,3 +1170,16 @@ Processing by MypageController#show as HTML
 Completed 200 OK in 69ms (Views: 46.4ms | ActiveRecord: 1.6ms | Allocations: 11200)
 
 
+Started GET "/user/1" for 172.25.0.1 at 2020-08-08 08:05:27 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by MypageController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/mypage_controller.rb:3:in `show'
+  Rendering mypage/show.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/mypage/show.html.erb:1
+  Rendered mypage/show.html.erb within layouts/application (Duration: 3.6ms | Allocations: 929)
+Completed 200 OK in 31ms (Views: 26.7ms | ActiveRecord: 1.3ms | Allocations: 3365)
+
+
