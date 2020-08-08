@@ -20,15 +20,18 @@
           <%= link_to "#{current_user.name}", "http://localhost:3000/user/#{current_user.id}", class: "nav-link" %>
         </li>
         <% end %>
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "ログアウト", "http://localhost:3000/logout", class: "nav-link" %>
+        </li>
+      <% else %>
         <li class="nav-item">
           <%= link_to "新規登録", "http://localhost:3000/signup", class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "ログイン", "http://localhost:3000/login", class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "ログアウト", "http://localhost:3000/logout", class: "nav-link" %>
-        </li>
+      <% end %>
       </ul>
     </nav>
     <div class="container">

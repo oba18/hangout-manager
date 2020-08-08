@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :user
   has_many :likes, dependent: :destroy
   has_many :liked_hang_outs, through: :likes, source: :hang_outs
+  has_many :comments
   enum sex: { man: 0, woman: 1 }
 
   def follow(other_user)

@@ -44,7 +44,35 @@
   </tbody>
 </table>
 
+<br>
+<h2>コメント一覧</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @hang_out.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<h2>コメントする</h2>
+<%= form_with(model: [@hang_out, @comment], method: :post) do |form| %>
+  <%= form.text_area :content, :size=>"80"%>
+  <%= form.hidden_field :hang_out_id, value: @hang_out.id %>
+  <br>
+  <%= form.submit "コメント" %>
+<% end %>
+
+<br>
 <% if current_user.id == @hang_out.user.id %>
 <%= link_to 'Edit', edit_hang_out_path(@hang_out) %> |
 <% end %>
