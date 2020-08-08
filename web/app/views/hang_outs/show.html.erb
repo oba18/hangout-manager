@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @hang_out.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @hang_out.date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @hang_out.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @hang_out.end_time %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @hang_out.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_hang_out_path(@hang_out) %> |
+<%= link_to 'Back', 'http://localhost:3000/user/#{current_user.id}' %>
