@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%# <p id="notice"><%= notice %></p>
 
 <h1 style="text-align:center">みんなのあそび</h1>
 <br>
@@ -44,3 +44,5 @@
 <br>
 
 <%= link_to 'あそびを追加する', new_hang_out_path %>
+<%= button_to 'JSON取得', {controller: 'hang_outs', action: 'get_json'}, { method: :get } %>
+<%= @result %>

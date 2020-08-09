@@ -1,3 +1,5 @@
+require 'net/http'
+require 'json'
 class HangOutsController < ApplicationController
   before_action :set_hang_out, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +7,12 @@ class HangOutsController < ApplicationController
   # GET /hang_outs.json
   def index
     @hang_outs = HangOut.all
+  end
+
+  def get_json
+    uri = URI.parse("http://recommend:5000")
+    text = Net::HTTP.get(uri)
+    @result = text
   end
 
   # GET /hang_outs/1
