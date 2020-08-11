@@ -6,12 +6,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Start time</th>
-      <th>~</th>
-      <th>End time</th>
+      <th>ユーザー</th>
+      <th>あそび</th>
+      <th>日付</th>
+      <th>開始予定時間</th>
+      <th>終了予定時間</th>
       <th>いいね数</th>
       <th>いいね</th>
     <% if user_signed_in? %>
@@ -22,13 +21,12 @@
 
   <tbody>
     <% @hang_outs.each do |hang_out| %>
-      <tr>
+      <tr onclick='window.location="<%= '/hang_outs/' + hang_out.id.to_s %>"' role="link">
         <td><%= hang_out.user.name %></td>
-        <td><%= link_to "#{hang_out.name}", "http://localhost:3000/hang_outs/#{hang_out.id}" %></td>
-        <td><%= hang_out.date %></td>
-        <td><%= hang_out.start_time %></td>
-        <td>~</td>
-        <td><%= hang_out.end_time %></td>
+        <td><%= hang_out.name %></td>
+        <td><%= hang_out.date.strftime("%Y年%m月%d日")%></td>
+        <td><%= hang_out.start_time.strftime("%-H時%-M分") %></td>
+        <td><%= hang_out.end_time.strftime("%-H時%-M分") %></td>
         <td><%= hang_out.likes.count %></td>
     <% if user_signed_in? %>
       <% if current_user.already_liked?(hang_out) %>
