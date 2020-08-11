@@ -1,3 +1,4 @@
+<div class="pad70">
 <p id="notice"><%= notice %></p>
 
 <h2><%= @hang_out.name %></h2>
@@ -74,6 +75,7 @@
 
 <br>
 <% if current_user.id == @hang_out.user.id %>
-<%= link_to 'Edit', edit_hang_out_path(@hang_out) %> |
+<%= link_to '編集', edit_hang_out_path(@hang_out), { class: 'btn btn-primary w-25' } %> 
 <% end %>
-<%= link_to 'Back', "http://localhost:3000/hang_outs" %>
+<%= link_to '戻る', "http://localhost:3000/hang_outs", { class: 'btn btn-primary w-25' } %>
+</div>

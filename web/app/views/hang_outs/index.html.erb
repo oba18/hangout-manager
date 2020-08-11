@@ -32,9 +32,9 @@
         <td><%= hang_out.likes.count %></td>
     <% if user_signed_in? %>
       <% if current_user.already_liked?(hang_out) %>
-        <td><%= button_to 'いいねを取り消す', hang_out_like_path(hang_out, current_user), method: :delete %></td>
+        <td><%= button_to '👍', hang_out_like_path(hang_out, current_user), { method: :delete, class: 'btn btn-primary' } %></td>
       <% else %>
-        <td><%= button_to 'いいね', hang_out_likes_path(hang_out) %></td>
+        <td><%= button_to '👍', hang_out_likes_path(hang_out), { class: 'btn btn-outline-primary' } %></td>
       <% end %>
         <td><%= render 'relationships/follow_button', user: hang_out.user %></td>
       </tr>
@@ -45,5 +45,5 @@
 
 <br>
 
-<%= link_to 'あそびを追加する', new_hang_out_path %>
+<%= link_to "あそびを追加する", new_hang_out_path, { class: 'btn btn-outline-primary w-25' }  %>
 </div>
