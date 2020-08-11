@@ -1,44 +1,76 @@
-<h2>Sign up</h2>
+<div class=pad70>
+  <div class="center">
+    <h2>新規登録</h2>
+    <hr>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+      <div class="field">
+        <%= f.label :name, "名前" %><br>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.text_field :name, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="field">
+        <%= f.label :email, "メールアドレス" %>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.email_field :email, { class: 'form-control', required: true } %>
+          </div>
+        </div> 
+      </div>
+
+      <br>
+      <div class="field">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.label :age, "年齢" %>
+            <%= f.number_field :age, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="field">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.label :sex, "性別" %>
+            <%= f.select :sex, User.sexes.keys, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="field">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="field">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.label :password_confirmation, "パスワードの確認" %>
+            <%= f.password_field :password_confirmation, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="actions">
+        <%= f.submit "登録" ,{ class: 'btn btn-primary w-25' } %>
+      </div>
+    <% end %>
+
+    <button type="button" class="btn btn-secondary w-25" onclick="location.href='http://localhost:3000'">戻る</button>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.number_field :age %>
-  </div>
-
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.select :sex, User.sexes.keys %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
