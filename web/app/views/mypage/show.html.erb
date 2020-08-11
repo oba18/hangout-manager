@@ -5,8 +5,9 @@
 <table class="table table-striped">
   <tr><th>名前</th><td><%= current_user.name %></td></tr>
   <tr><th>年齢</th><td><%= current_user.age %></td></tr>
-  <tr><th>フォロー</th><td><%= link_to "#{current_user.followings.count}", "http://localhost:3000/user/#{current_user.id}/follow" %></td></tr>
-  <tr><th>フォロワー</th><td><%= link_to "#{current_user.followers.count}", "http://localhost:3000/user/#{current_user.id}/follower" %></td></tr>
+  <tr><th>性別</th><td><%= current_user.sex %></td></tr>
+  <tr><th><%= link_to "フォロー", "http://localhost:3000/user/#{current_user.id}/follow" %></th><td><%= link_to "#{current_user.followings.count}", "http://localhost:3000/user/#{current_user.id}/follow" %></td></tr>
+  <tr><th><%= link_to "フォロワー", "http://localhost:3000/user/#{current_user.id}/follower" %></th><td><%= link_to "#{current_user.followers.count}", "http://localhost:3000/user/#{current_user.id}/follower" %></td></tr>
 </table>
 <br>
 <br>
@@ -23,11 +24,11 @@
 
   <tbody>
     <% current_user.hang_outs.each do |hang_out| %>
-      <tr>
-        <td><%= link_to "#{hang_out.name}", "http://localhost:3000/hang_outs/#{hang_out.id}" %></td>
-        <td><%= hang_out.date %></td>
-        <td><%= hang_out.start_time %></td>
-        <td><%= hang_out.end_time %></td>
+      <tr onclick='window.location="<%= '/hang_outs/' + hang_out.id.to_s %>"' role="link">
+        <td><%= hang_out.name %></td>
+        <td><%= hang_out.date.strftime("%Y年%m月%d日") %></td>
+        <td><%= hang_out.start_time.strftime("%-H時%-M分") %></td>
+        <td><%= hang_out.end_time.strftime("%-H時%-M分") %></td>
       </tr>
     <% end %>
   </tbody>
@@ -49,11 +50,11 @@
 
   <tbody>
     <% current_user.likes.each do |like| %>
-      <tr>
+      <tr onclick='window.location="<%= '/hang_outs/' + like.hang_out.id.to_s %>"' role="link">
         <td><%= like.hang_out.name %></td>
-        <td><%= like.hang_out.date %></td>
-        <td><%= like.hang_out.start_time %></td>
-        <td><%= like.hang_out.end_time %></td>
+        <td><%= like.hang_out.date.strftime("%Y年%m月%d日")  %></td>
+        <td><%= like.hang_out.start_time.strftime("%-H時%-M分") %></td>
+        <td><%= like.hang_out.end_time.strftime("%-H時%-M分") %></td>
       </tr>
     <% end %>
   </tbody>
