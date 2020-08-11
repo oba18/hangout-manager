@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class=pad70>
 <h1 style="text-align:center">みんなのあそび</h1>
 <br>
 <table class="table table-striped">
@@ -11,6 +12,7 @@
       <th>Start time</th>
       <th>~</th>
       <th>End time</th>
+      <th>いいね数</th>
       <th>いいね</th>
     <% if user_signed_in? %>
       <th>フォロー</th>
@@ -44,3 +46,4 @@
 <br>
 
 <%= link_to 'あそびを追加する', new_hang_out_path %>
+</div>
