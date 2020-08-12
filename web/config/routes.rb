@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create]
   end
-  get 'hang_outs#get_json'
   
   # フォロー系
   resources :relationships, only: [:create, :destroy]
