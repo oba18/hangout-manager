@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # ログイン系
   devise_scope :user do
     get "user/:id", :to => "mypage#show"
+    get "user/:id/follow", :to => "mypage#follow"
+    get "user/:id/follower", :to => "mypage#follower"
     get "signup", :to => "users/registrations#new"
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"

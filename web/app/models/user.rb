@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_hang_outs, through: :likes, source: :hang_outs
   has_many :comments
-  enum sex: { man: 0, woman: 1 }
+  enum sex: { 男: 0, 女: 1 }
 
   def follow(other_user)
     unless self == other_user

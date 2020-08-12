@@ -1,16 +1,17 @@
 <%# <p id="notice"><%= notice %></p>
 
+<div class=pad70>
 <h1 style="text-align:center">みんなのあそび</h1>
 <br>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Start time</th>
-      <th>~</th>
-      <th>End time</th>
+      <th>ユーザー</th>
+      <th>あそび</th>
+      <th>日付</th>
+      <th>開始予定時間</th>
+      <th>終了予定時間</th>
+      <th>いいね数</th>
       <th>いいね</th>
     <% if user_signed_in? %>
       <th>フォロー</th>
@@ -20,19 +21,18 @@
 
   <tbody>
     <% @hang_outs.each do |hang_out| %>
-      <tr>
+      <tr onclick='window.location="<%= '/hang_outs/' + hang_out.id.to_s %>"' role="link">
         <td><%= hang_out.user.name %></td>
-        <td><%= link_to "#{hang_out.name}", "http://localhost:3000/hang_outs/#{hang_out.id}" %></td>
-        <td><%= hang_out.date %></td>
-        <td><%= hang_out.start_time %></td>
-        <td>~</td>
-        <td><%= hang_out.end_time %></td>
+        <td><%= hang_out.name %></td>
+        <td><%= hang_out.date.strftime("%Y年%m月%d日")%></td>
+        <td><%= hang_out.start_time.strftime("%-H時%-M分") %></td>
+        <td><%= hang_out.end_time.strftime("%-H時%-M分") %></td>
         <td><%= hang_out.likes.count %></td>
     <% if user_signed_in? %>
       <% if current_user.already_liked?(hang_out) %>
-        <td><%= button_to 'いいねを取り消す', hang_out_like_path(hang_out, current_user), method: :delete %></td>
+        <td><%= button_to '👍', hang_out_like_path(hang_out, current_user), { method: :delete, class: 'btn btn-primary' } %></td>
       <% else %>
-        <td><%= button_to 'いいね', hang_out_likes_path(hang_out) %></td>
+        <td><%= button_to '👍', hang_out_likes_path(hang_out), { class: 'btn btn-outline-primary' } %></td>
       <% end %>
         <td><%= render 'relationships/follow_button', user: hang_out.user %></td>
       </tr>
@@ -43,6 +43,5 @@
 
 <br>
 
-<%= link_to 'あそびを追加する', new_hang_out_path %>
-<%= button_to 'JSON取得', {controller: 'hang_outs', action: 'get_json'}, { method: :get } %>
-<%= @result %>
+<%= link_to "あそびを追加する", new_hang_out_path, { class: 'btn btn-outline-primary w-25' }  %>
+</div>
