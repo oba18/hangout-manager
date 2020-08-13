@@ -10,17 +10,30 @@ class HangOutsController < ApplicationController
   end
 
   def get_json
-    uri = URI.parse("http://recommend:5000")
-    text = Net::HTTP.get(uri)
-    @result = text
+    @hang_out = HangOut.find(params[:id])
+    render json: @hang_out
   end
 
   # GET /hang_outs/1
   # GET /hang_outs/1.json
   def show
+    # いいね機能
     @like = Like.new
+
+    # コメント機能
     @comments = @hang_out.comments
     @comment = current_user.comments.new
+
+    # jsonを受け取る機能
+    uri = URI.parse("http://recommend:5000/#{@hang_out.id}")
+    # json = Net::HTTP.get_response(uri)
+    json = Net::HTTP.get(uri)
+    @response = JSON.parse(json)
+    @response_id = @response['id']
+    @response_name = @response['name']
+    @response_date = @response['date']
+    @response_start_time = @response['start_time']
+    @response_end_time = @response['end_time']
   end
 
   # GET /hang_outs/new

@@ -1,14 +1,17 @@
 <div class=pad70>
 <h1>ようこそ<%= current_user.name %>さん</h1>
 <br>
+<%= link_to "あそびをレコメンドする", new_question_path, { class: 'btn btn-outline-primary btn-lg btn-block' } %>
+<br>
 <h2>プロフィール</h2>
 <table class="table table-striped">
   <tr><th>名前</th><td><%= current_user.name %></td></tr>
   <tr><th>年齢</th><td><%= current_user.age %></td></tr>
   <tr><th>性別</th><td><%= current_user.sex %></td></tr>
-  <tr><th><%= link_to "フォロー", "http://localhost:3000/user/#{current_user.id}/follow" %></th><td><%= link_to "#{current_user.followings.count}", "http://localhost:3000/user/#{current_user.id}/follow" %></td></tr>
-  <tr><th><%= link_to "フォロワー", "http://localhost:3000/user/#{current_user.id}/follower" %></th><td><%= link_to "#{current_user.followers.count}", "http://localhost:3000/user/#{current_user.id}/follower" %></td></tr>
+  <tr onclick='window.location="<%= '/user/' + current_user.id.to_s + '/follow' %>"' role="link"><th>フォロー</th><td><%= current_user.followings.count %></td></tr>
+  <tr onclick='window.location="<%= '/user/' + current_user.id.to_s + '/follower' %>"' role="link"><th>フォロワー</th><td><%= current_user.followers.count %></td></tr>
 </table>
+<%= link_to "プロフィールを編集", edit_user_registration_path, { class: 'btn btn-outline-primary w-25' }  %>
 <br>
 <br>
 <h2><%= current_user.name %>の遊びの予定</h2>

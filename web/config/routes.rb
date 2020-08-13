@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :questions
   # 最初の画面
   root 'welcome#welcome'
 
@@ -7,9 +8,14 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create]
   end
+  get "hang_outs/:id/json", :to => "hang_outs#get_json"
+  
   
   # フォロー系
   resources :relationships, only: [:create, :destroy]
+
+  # Question
+  get "questions/:id/json", :to => "questions#get_json"
 
   # マイページ系
   get 'mypage/show'
