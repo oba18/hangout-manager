@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Myapp
   class Application < Rails::Application
+    config.hosts << "web"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.time_zone = 'Asia/Tokyo'

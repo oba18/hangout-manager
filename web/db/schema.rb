@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_152345) do
+ActiveRecord::Schema.define(version: 2020_08_13_053703) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2020_08_08_152345) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["hang_out_id"], name: "index_likes_on_hang_out_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "q_one"
+    t.integer "q_two"
+    t.integer "q_three"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

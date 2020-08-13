@@ -1,17 +1,33 @@
 Rails.application.routes.draw do
+  resources :questions
+  # 最初の画面
+  root 'welcome#welcome'
+
+  # hang_out系
   resources :hang_outs do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create]
   end
+  get "hang_outs/:id/json", :to => "hang_outs#get_json"
+  
+  
+  # フォロー系
   resources :relationships, only: [:create, :destroy]
+
+  # Question
+  get "questions/:id/json", :to => "questions#get_json"
+
+  # マイページ系
   get 'mypage/show'
-  root 'welcome#welcome'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  # devise系
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'   
   } 
 
+  # ログイン系
   devise_scope :user do
     get "user/:id", :to => "mypage#show"
     get "user/:id/follow", :to => "mypage#follow"

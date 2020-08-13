@@ -1,0 +1,49 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <h3>質問1</h3>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        当てはまらない&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_one, 1 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_one, 2 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_one, 3 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_one, 4 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_one, 5 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_one, 6 %>&nbsp;&nbsp;&nbsp;当てはまる
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_one, "1" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_one, "2" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_one, "3" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_one, "4" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_one, "5" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_one, "6" %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <h3>質問2</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      当てはまらない&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_two, 1 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_two, 2 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_two, 3 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_two, 4 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_two, 5 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_two, 6 %>&nbsp;&nbsp;&nbsp;当てはまる
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_two, "1" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_two, "2" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_two, "3" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_two, "4" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_two, "5" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_two, "6" %>
+    </div>
+  </div>
+
+  <br>
+  <h3>質問3</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      当てはまらない&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_three, 1 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_three, 2 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_three, 3 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_three, 4 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_three, 5 %>&nbsp;&nbsp;&nbsp;<%= form.radio_button :q_three, 6 %>&nbsp;&nbsp;&nbsp;当てはまる
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_three, "1" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_three, "2" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_three, "3" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_three, "4" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_three, "5" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= form.label :q_three, "6" %>
+    </div>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit "登録", { class: 'btn btn-primary w-25' }%>
+  </div>
+<% end %>
+<%= link_to "戻る", :back, { class: 'btn btn-primary w-25' }  %>
+</div>
