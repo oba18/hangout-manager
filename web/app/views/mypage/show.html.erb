@@ -11,7 +11,7 @@
   <tr onclick='window.location="<%= '/user/' + current_user.id.to_s + '/follow' %>"' role="link"><th>フォロー</th><td><%= current_user.followings.count %></td></tr>
   <tr onclick='window.location="<%= '/user/' + current_user.id.to_s + '/follower' %>"' role="link"><th>フォロワー</th><td><%= current_user.followers.count %></td></tr>
 </table>
-<%= link_to "プロフィールを編集", edit_user_registration_path, { class: 'btn btn-outline-primary w-25' }  %>
+<%= link_to "プロフィールを編集", edit_user_registration_path, { class: 'btn btn-primary w-25' }  %>
 <br>
 <br>
 <h2><%= current_user.name %>の遊びの予定</h2>

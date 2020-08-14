@@ -11,7 +11,7 @@
 
   <tbody>
     <% current_user.followers.each do |follower| %>
-      <tr>
+      <tr onclick='window.location="<%= '/users/' + follower.id.to_s + '/show' %>"' role="link">
         <td><%= follower.name %></td>
         <td><%= follower.age %></td>
         <td><%= follower.sex %></td>

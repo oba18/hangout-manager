@@ -29,29 +29,7 @@
       <% end %>
 
       <div class="field">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <%= f.password_field :password, { class: 'form-control', required: true }  %>
-          </div>
-        </div>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <%= f.password_field :password_confirmation, { class: 'form-control', required: true } %>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.label :current_password, "現在のパスワードを入力" %> <br>
         <div class="row justify-content-center">
           <div class="col-md-6">
         <%= f.password_field :current_password, { class: 'form-control', required: true } %>
@@ -59,8 +37,27 @@
         </div>
       </div>
 
+      <div class="field">
+        <%= f.label :password, "新しいパスワードを入力" %>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.password_field :password, { class: 'form-control', required: true }  %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "新しいパスワードの確認" %><br />
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.password_field :password_confirmation, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+
+
       <div class="actions">
-        <%= f.submit "Update", { class: 'btn btn-primary w-25' } %>
+        <%= f.submit "プロフィールを更新する", { class: 'btn btn-primary w-25' } %>
       </div>
     <% end %>
 <%= link_to '戻る', :back, { class: 'btn btn-primary w-25' } %>

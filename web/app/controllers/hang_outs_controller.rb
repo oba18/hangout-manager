@@ -6,7 +6,10 @@ class HangOutsController < ApplicationController
   # GET /hang_outs
   # GET /hang_outs.json
   def index
-    @hang_outs = HangOut.all
+    @hang_outs = HangOut.all.order(created_at: "DESC").page(params[:page]).per(10)
+    @hang_outs_label_0 = HangOut.where(label: 0).order(created_at: "DESC")
+    @hang_outs_label_1 = HangOut.where(label: 1).order(created_at: "DESC")
+    @hang_outs_label_2 = HangOut.where(label: 2).order(created_at: "DESC")
   end
 
   def get_json
@@ -25,7 +28,7 @@ class HangOutsController < ApplicationController
     @comment = current_user.comments.new
 
     # jsonを受け取る機能
-    uri = URI.parse("http://recommend:5000/#{@hang_out.id}")
+    uri = URI.parse("http://recommend:5000/hangouts/#{@hang_out.id}")
     # json = Net::HTTP.get_response(uri)
     json = Net::HTTP.get(uri)
     @response = JSON.parse(json)
@@ -34,6 +37,14 @@ class HangOutsController < ApplicationController
     @response_date = @response['date']
     @response_start_time = @response['start_time']
     @response_end_time = @response['end_time']
+  end
+
+  def confirm_like
+    @hang_out = HangOut.find(params[:id])
+  end
+
+  def confirm_destroy
+    @hang_out = HangOut.find(params[:id])
   end
 
   # GET /hang_outs/new
@@ -50,6 +61,7 @@ class HangOutsController < ApplicationController
   def create
     @hang_out = HangOut.new(hang_out_params)
     @hang_out.user_id = current_user.id
+    @hang_out.label = 0
     @hang_out.save
 
     # respond_to do |format|
@@ -61,7 +73,7 @@ class HangOutsController < ApplicationController
     #     format.json { render json: @hang_out.errors, status: :unprocessable_entity }
     #   end
     # end
-    redirect_to "http://localhost:3000/user/#{current_user.id}"
+    redirect_to "http://localhost:3000/hang_outs"
   end
 
   # PATCH/PUT /hang_outs/1
@@ -96,6 +108,6 @@ class HangOutsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hang_out_params
-      params.require(:hang_out).permit(:name, :date, :start_time, :end_time, :user_id)
+      params.require(:hang_out).permit(:name, :date, :start_time, :end_time, :user_id, :label, :upper_member)
     end
 end
