@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_082210) do
+ActiveRecord::Schema.define(version: 2020_08_14_173253) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_082210) do
     t.integer "q_three"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -60,6 +62,34 @@ ActiveRecord::Schema.define(version: 2020_08_13_082210) do
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
     t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
+  create_table "user_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "d_one"
+    t.integer "d_two"
+    t.integer "d_three"
+    t.integer "d_four"
+    t.integer "d_five"
+    t.integer "d_six"
+    t.integer "d_seven"
+    t.integer "d_eight"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_details_on_user_id"
+  end
+
+  create_table "user_personals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "p_one"
+    t.integer "p_two"
+    t.integer "p_three"
+    t.integer "p_four"
+    t.integer "p_five"
+    t.integer "p_six"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_personals_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -82,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_082210) do
   add_foreign_key "hang_outs", "users"
   add_foreign_key "likes", "hang_outs"
   add_foreign_key "likes", "users"
+  add_foreign_key "questions", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
 end

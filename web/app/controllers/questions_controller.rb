@@ -30,16 +30,9 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
+    @question.user_id = current_user.id
+    @question.save
+    redirect_to "http://localhost:3000/questions/#{@question.id}"
   end
 
   # PATCH/PUT /questions/1
@@ -74,6 +67,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:q_one, :q_two, :q_three)
+      params.require(:question).permit(:q_one, :q_two, :q_three, :user)
     end
 end

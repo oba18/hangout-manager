@@ -22,10 +22,38 @@ def get_question(question_id):
     q1 = question_json['q_one']
     q2 = question_json['q_two']
     q3 = question_json['q_three']
-    print (type(q1))
-    print (q1)
-    print (q2)
-    print (q3)
+    #  print (type(q1))
+    print ('q1', q1, 'q2', q2, 'q3', q3)
+    return res.data.decode('utf-8')
+
+@app.route("/user_details/<user_detail_id>")
+def get_user_detail(user_detail_id):
+    url = 'http://web:3000/user_details/' + user_detail_id + '/json'
+    res = http.request('GET',url)
+    user_detail_json = json.loads(res.data.decode('utf-8'))
+    d1 = user_detail_json['d_one']
+    d2 = user_detail_json['d_two']
+    d3 = user_detail_json['d_three']
+    d4 = user_detail_json['d_four']
+    d5 = user_detail_json['d_five']
+    d6 = user_detail_json['d_six']
+    d7 = user_detail_json['d_seven']
+    d8 = user_detail_json['d_eight']
+    print ('d1', d1, 'd2', d2, 'd3', d3, 'd4', d4, 'd5', d5, 'd6', d6, 'd7', d7, 'd8', d8)
+    return res.data.decode('utf-8')
+
+@app.route("/user_personals/<user_personal_id>")
+def get_user_personal(user_personal_id):
+    url = 'http://web:3000/user_personals/' + user_personal_id + '/json'
+    res = http.request('GET',url)
+    user_personal_json = json.loads(res.data.decode('utf-8'))
+    p1 = user_personal_json['p_one']
+    p2 = user_personal_json['p_two']
+    p3 = user_personal_json['p_three']
+    p4 = user_personal_json['p_four']
+    p5 = user_personal_json['p_five']
+    p6 = user_personal_json['p_six']
+    print ('p1', p1, 'p2', p2, 'p3', p3, 'p4', p4, 'p5', p5, 'p6', p6)
     return res.data.decode('utf-8')
 
 ## おまじない
