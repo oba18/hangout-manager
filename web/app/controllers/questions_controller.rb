@@ -14,7 +14,9 @@ class QuestionsController < ApplicationController
 
   def get_json
     @question = Question.find(params[:id])
-    render json: @question
+    @user_detail = UserDetail.find(@question.user_id)
+    # render json: @question
+    render :json => {:question => @question, :user_detail => @user_detail }
   end
 
   # GET /questions/new

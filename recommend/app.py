@@ -16,15 +16,20 @@ def get_hangout(hang_out_id):
 def get_question(question_id):
     url = 'http://web:3000/questions/' + question_id + '/json'
     res = http.request('GET',url)
-    #  print (res.status)
-    question_json = json.loads(res.data.decode('utf-8'))
-    print (type(question_json))
-    q1 = question_json['q_one']
-    q2 = question_json['q_two']
-    q3 = question_json['q_three']
-    #  print (type(q1))
-    print ('q1', q1, 'q2', q2, 'q3', q3)
-    return res.data.decode('utf-8')
+    data = json.loads(res.data.decode('utf-8'))
+    q1 = data['question']['q_one']
+    q2 = data['question']['q_two']
+    q3 = data['question']['q_three']
+    d1 = data['user_detail']['d_one']
+    d2 = data['user_detail']['d_two']
+    d3 = data['user_detail']['d_three']
+    d4 = data['user_detail']['d_four']
+    d5 = data['user_detail']['d_five']
+    d6 = data['user_detail']['d_six']
+    d7 = data['user_detail']['d_seven']
+    d8 = data['user_detail']['d_eight']
+    print ('q1:', q1, 'q2:', q2, 'q3:', q3, 'd1:', d1, 'd2:', d2, 'd3:', d3, 'd4:', d4, 'd5:', d5, 'd6:', d6, 'd7:', d7, 'd8:', d8)
+    return data
 
 @app.route("/user_details/<user_detail_id>")
 def get_user_detail(user_detail_id):
