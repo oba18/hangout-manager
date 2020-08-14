@@ -12,7 +12,14 @@ Rails.application.routes.draw do
   get "hang_outs/:id/json", :to => "hang_outs#get_json"
   get "hang_outs/:id/confirm", :to => "hang_outs#confirm_like"
   get "hang_outs/:id/confirm_destroy", :to => "hang_outs#confirm_destroy"
+
+  # user_detail 系
+  resources :user_details
+  get "user_details/:id/json", :to => "user_details#get_json"
   
+  # user_personal 系
+  resources :user_personals
+  get "user_personals/:id/json", :to => "user_personals#get_json"
   
   # フォロー系
   resources :relationships, only: [:create, :destroy]

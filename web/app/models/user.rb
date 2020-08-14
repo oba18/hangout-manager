@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_hang_outs, through: :likes, source: :hang_outs
   has_many :comments
+  has_one :user_detail
+  has_one :user_personal
   enum sex: { 男: 0, 女: 1 }
 
   def follow(other_user)
