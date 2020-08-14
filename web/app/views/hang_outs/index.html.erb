@@ -1,47 +1,48 @@
-<%# <p id="notice"><%= notice %></p>
-
 <div class=pad70>
-<h1 style="text-align:center">みんなのあそび</h1>
-<br>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ユーザー</th>
-      <th>あそび</th>
-      <th>日付</th>
-      <th>開始予定時間</th>
-      <th>終了予定時間</th>
-      <th>いいね数</th>
-      <th>いいね</th>
-    <% if user_signed_in? %>
-      <th>フォロー</th>
-  <% end %>
-    </tr>
-  </thead>
+  <h1 style="text-align:center">みんなのあそび</h1>
+  <hr>
+  <br>
+  <div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="all">全て</label>
 
-  <tbody>
-    <% @hang_outs.each do |hang_out| %>
-      <tr onclick='window.location="<%= '/hang_outs/' + hang_out.id.to_s %>"' role="link">
-        <td><%= hang_out.user.name %></td>
-        <td><%= hang_out.name %></td>
-        <td><%= hang_out.date.strftime("%Y年%m月%d日")%></td>
-        <td><%= hang_out.start_time.strftime("%-H時%-M分") %></td>
-        <td><%= hang_out.end_time.strftime("%-H時%-M分") %></td>
-        <td><%= hang_out.likes.count %></td>
-    <% if user_signed_in? %>
-      <% if current_user.already_liked?(hang_out) %>
-        <td><%= button_to '👍', hang_out_like_path(hang_out, current_user), { method: :delete, class: 'btn btn-primary' } %></td>
-      <% else %>
-        <td><%= button_to '👍', hang_out_likes_path(hang_out), { class: 'btn btn-outline-primary' } %></td>
-      <% end %>
-        <td><%= render 'relationships/follow_button', user: hang_out.user %></td>
-      </tr>
-    <% end %>
-  <% end %>
-  </tbody>
-</table>
+    <input id="label0" type="radio" name="tab_item">
+    <label class="tab_item" for="label0">募集中</label>
 
-<br>
+    <input id="label1" type="radio" name="tab_item">
+    <label class="tab_item" for="label1">募集締め切り</label>
 
-<%= link_to "あそびを追加する", new_hang_out_path, { class: 'btn btn-outline-primary w-25' }  %>
+    <input id="label2" type="radio" name="tab_item">
+    <label class="tab_item" for="label2">終了</label>
+
+    <div class="tab_content" id="all_content">
+      <div class="tab_content_description">
+        <% @hang_outs.reload %>
+        <%= render 'hang_outs/table', hang_outs: @hang_outs %>
+      </div>
+    </div>
+
+    <div class="tab_content" id="label0_content">
+      <div class="tab_content_description">
+        <% @hang_outs.reload %>
+        <%= render 'hang_outs/table', hang_outs: @hang_outs_label_0 %>
+      </div>
+    </div>
+
+    <div class="tab_content" id="label1_content">
+      <div class="tab_content_description">
+        <% @hang_outs.reload %>
+        <%= render 'hang_outs/table', hang_outs: @hang_outs_label_1 %>
+      </div>
+    </div>
+
+    <div class="tab_content" id="label2_content">
+      <div class="tab_content_description">
+        <% @hang_outs.reload %>
+        <%= render 'hang_outs/table', hang_outs: @hang_outs_label_2 %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <%= link_to "あそびを追加する", new_hang_out_path, { class: 'btn btn-outline-primary w-25' }  %>
 </div>

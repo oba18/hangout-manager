@@ -1,10 +1,9 @@
 <div class="pad70">
-  <p id="notice"><%= notice %></p>
 
   <h2><%= @hang_out.name %></h2>
   <hr>
   <h3>
-    <%= @hang_out.user.name %>のあそび
+    <%= link_to "#{@hang_out.user.name}", "http://localhost:3000/users/#{@hang_out.user.id}/show" %>のあそび
   </h3>
   <br>
 <table class="table table-striped">
@@ -13,7 +12,7 @@
   <tr><th>終了予定時刻</th><td><%= @hang_out.end_time.strftime("%-H時%-M分") %></td></tr>
 </table>
   <br>
-  <h2>いいねした人</h2>
+  <h2>参加者</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -25,7 +24,7 @@
 
     <tbody>
       <% @hang_out.liked_users.each do |user| %>
-        <tr>
+        <tr onclick='window.location="<%= '/users/' + user.id.to_s + '/show'%>"' role="link">
           <td><%= user.name %></td>
           <td><%= user.age %></td>
           <td><%= user.sex %></td>
@@ -46,7 +45,7 @@
 
     <tbody>
       <% @hang_out.comments.each do |comment| %>
-        <tr>
+        <tr onclick='window.location="<%= '/users/' + comment.user.id.to_s + '/show' %>"' role="link">
           <td><%= comment.user.name %></td>
           <td><%= comment.content %></td>
         </tr>
@@ -63,6 +62,7 @@
     <% end %>
     </div>
 
+    <br>
     <br>
     <%= link_to '戻る', :back, { class: 'btn btn-primary w-25' } %>
     <% if current_user.id == @hang_out.user.id %>

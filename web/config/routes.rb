@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/:id/show', :to => "users#show"
   resources :questions
   # 最初の画面
   root 'welcome#welcome'
@@ -9,6 +10,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
   get "hang_outs/:id/json", :to => "hang_outs#get_json"
+  get "hang_outs/:id/confirm", :to => "hang_outs#confirm_like"
+  get "hang_outs/:id/confirm_destroy", :to => "hang_outs#confirm_destroy"
   
   
   # フォロー系

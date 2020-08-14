@@ -23,27 +23,24 @@
 
       <div class="field">
         <%= form.label :date, "いつ？" %>
-        <div class="row justify-content-center">
-          <div class="col-md-6">
             <%= form.date_select :date, {class: "form-control"} %>
-          </div>
-        </div>
       </div>
 
       <div class="field">
         <%= form.label :start_time, "何時から？" %>
-        <div class="row justify-content-center">
-          <div class="col-md-6">
         <%= form.time_select :start_time, { class: 'form-control', required: true } %>
-          </div>
-        </div>
       </div>
 
       <div class="field">
         <%= form.label :end_time, "何時まで？" %>
+        <%= form.time_select :end_time, { class: 'form-control', required: true }  %>
+      </div>
+
+      <div class="field">
+        <%= form.label :upper_member, "あと何人誘う？" %>
         <div class="row justify-content-center">
           <div class="col-md-6">
-        <%= form.time_select :end_time, { class: 'form-control', required: true }  %>
+        <%= form.number_field :upper_member, { class: 'form-control', required: true }  %>
           </div>
           </div>
       </div>
