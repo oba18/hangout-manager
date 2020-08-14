@@ -3,6 +3,8 @@ import requests
 import json
 import urllib3
 
+from main import RecommendHangout
+
 app = Flask(__name__)
 http = urllib3.PoolManager()
 
@@ -28,8 +30,17 @@ def get_question(question_id):
     d6 = data['user_detail']['d_six']
     d7 = data['user_detail']['d_seven']
     d8 = data['user_detail']['d_eight']
-    print ('q1:', q1, 'q2:', q2, 'q3:', q3, 'd1:', d1, 'd2:', d2, 'd3:', d3, 'd4:', d4, 'd5:', d5, 'd6:', d6, 'd7:', d7, 'd8:', d8)
-    return data
+
+    rh = RecommendHangout([d1,d2,d3,d4,d5,d6,d7,d8],[q1,q2,q3])
+    genre, hangouts = rh.forward()
+    return_rec = dict(a1=hangouts[0],
+                      a2=hangouts[1],
+                      a3=hangouts[2],
+                      a4=hangouts[3],
+                      a5=hangouts[4],
+                      ge=genre)
+
+    return return_rec
 
 @app.route("/user_details/<user_detail_id>")
 def get_user_detail(user_detail_id):

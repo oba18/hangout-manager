@@ -13,12 +13,9 @@ ENV TERM xterm
 EXPOSE 5000
 
 WORKDIR /recommend
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
-RUN pip install scikit-learn
-RUN pip install numpy
-RUN pip install pandas
-RUN pip install requests
-RUN pip install Flask
+COPY requirements.txt ${PWD}
+RUN pip3 install --upgrade pip3
+RUN pip3 install --upgrade setuptools
+RUN pip3 install -r requirements.txt
 
 COPY . /recommend
