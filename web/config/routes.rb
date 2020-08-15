@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # user_personal 系
   resources :user_personals
   get "user_personals/:id/json", :to => "user_personals#get_json"
+  get "user_all/json", :to => "user_personals#get_all_json"
 
   # recommend 系
   get "recommend_one/:id", :to => "hang_outs#recommend_one"
