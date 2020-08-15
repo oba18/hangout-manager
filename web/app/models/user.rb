@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :comments
   has_one :user_detail
   has_one :user_personal
+  has_many :recommend_user
   enum sex: { 男: 0, 女: 1 }
 
   def follow(other_user)

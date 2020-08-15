@@ -45,4 +45,5 @@
   </div>
   <br>
   <%= link_to "あそびを追加する", new_hang_out_path, { class: 'btn btn-outline-primary w-25' }  %>
+  <%= link_to "友達をレコメンドする", "http://localhost:3000/get_current/#{@recommend_user.id}", { class: 'btn btn-outline-primary w-25' }  %>
 </div>
