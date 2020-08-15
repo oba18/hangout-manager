@@ -14,6 +14,14 @@ def get_hangout(hang_out_id):
     res = http.request('GET',url)
     return res.data.decode('utf-8')
 
+@app.route("/current/<user_id>")
+def get_current_user(user_id):
+    url = 'http://web:3000/to_current/' + user_id + '/json'
+    res = http.request('GET',url)
+    data = res.data.decode('utf-8')
+    print (data)
+    return res.data.decode('utf-8')
+
 @app.route("/questions/<question_id>")
 def get_question(question_id):
     url = 'http://web:3000/questions/' + question_id + '/json'
@@ -30,7 +38,7 @@ def get_question(question_id):
     d6 = data['user_detail']['d_six']
     d7 = data['user_detail']['d_seven']
     d8 = data['user_detail']['d_eight']
-
+    print (data)
     rh = RecommendHangout([d1,d2,d3,d4,d5,d6,d7,d8],[q1,q2,q3])
     genre, hangouts = rh.forward()
     return_rec = dict(a1=hangouts[0],
@@ -67,9 +75,7 @@ def get_user_personal(user_personal_id):
     p2 = user_personal_json['p_two']
     p3 = user_personal_json['p_three']
     p4 = user_personal_json['p_four']
-    p5 = user_personal_json['p_five']
-    p6 = user_personal_json['p_six']
-    print ('p1', p1, 'p2', p2, 'p3', p3, 'p4', p4, 'p5', p5, 'p6', p6)
+    print ('p1', p1, 'p2', p2, 'p3', p3, 'p4', p4)
     return res.data.decode('utf-8')
 
 @app.route("/users")
@@ -89,7 +95,6 @@ def get_users():
         user_personal_list = []
 
     print (user_list) # user_list->Userの情報[p_one, p_two, p_three, p_four, user_id]
-
     return res.data.decode('utf-8')
 
 ## おまじない

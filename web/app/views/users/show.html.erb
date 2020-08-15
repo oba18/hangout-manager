@@ -3,5 +3,5 @@
   <hr>
   <%= render 'relationships/follow_button', user: @user %>
   <br>
-  <%= link_to "戻る", :back, { class: 'btn btn-outline-primary w-25' }  %>
+  <%= link_to "マイページへ", "http://localhost:3000/user/#{current_user.id}", { class: 'btn btn-outline-primary w-25' }  %>
 </div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recommend_users
   get 'users/:id/show', :to => "users#show"
   resources :questions
   # 最初の画面
@@ -36,8 +37,12 @@ Rails.application.routes.draw do
   # Question
   get "questions/:id/json", :to => "questions#get_json"
 
+  get "to_current", :to => "recommend_users#to_current"
+  get "to_current/:id/json", :to => "recommend_users#to_current_json"
+  get "get_current/:id", :to => "recommend_users#get_current"
+
   # マイページ系
-  get 'mypage/show'
+  get 'mypage/show', as: 'mypage'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   # devise系

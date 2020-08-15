@@ -10,6 +10,10 @@ class HangOutsController < ApplicationController
     @hang_outs_label_0 = HangOut.where(label: 0).order(created_at: "DESC")
     @hang_outs_label_1 = HangOut.where(label: 1).order(created_at: "DESC")
     @hang_outs_label_2 = HangOut.where(label: 2).order(created_at: "DESC")
+
+    @recommend_user = RecommendUser.new
+    @recommend_user.user_id = current_user.id
+    @recommend_user.save
   end
 
   def get_json
