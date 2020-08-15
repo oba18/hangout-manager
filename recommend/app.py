@@ -72,6 +72,26 @@ def get_user_personal(user_personal_id):
     print ('p1', p1, 'p2', p2, 'p3', p3, 'p4', p4, 'p5', p5, 'p6', p6)
     return res.data.decode('utf-8')
 
+@app.route("/users")
+def get_users():
+    url = 'http://web:3000/user_all/json'
+    res = http.request('GET',url)
+    users_json = json.loads(res.data.decode('utf-8'))
+    user_list = []
+    user_personal_list = []
+    for i in range(len(users_json['user_personals'])):
+        user_personal_list += [users_json['user_personals'][i]['p_one']]
+        user_personal_list += [users_json['user_personals'][i]['p_two']]
+        user_personal_list += [users_json['user_personals'][i]['p_three']]
+        user_personal_list += [users_json['user_personals'][i]['p_four']]
+        user_personal_list += [users_json['user_personals'][i]['user_id']]
+        user_list += [user_personal_list]
+        user_personal_list = []
+
+    print (user_list) # user_list->Userの情報[p_one, p_two, p_three, p_four, user_id]
+
+    return res.data.decode('utf-8')
+
 ## おまじない
 if __name__ == "__main__":
     app.run(debug=True)

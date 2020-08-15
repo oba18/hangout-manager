@@ -12,6 +12,12 @@ class UserPersonalsController < ApplicationController
     render json: @user_personal
   end
 
+  def get_all_json
+    @user_personals = UserPersonal.all
+    @users = User.all
+    render :json => { :users => @users, :user_personals => @user_personals }
+  end
+
   # GET /user_personals/1
   # GET /user_personals/1.json
   def show
