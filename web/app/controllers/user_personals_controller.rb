@@ -67,6 +67,6 @@ class UserPersonalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_personal_params
-      params.require(:user_personal).permit(:p_one, :p_two, :p_three, :p_four, :p_five, :p_six, :user)
+      params.require(:user_personal).permit(:p_one, :p_two, :p_three, :p_four, :user)
     end
 end
