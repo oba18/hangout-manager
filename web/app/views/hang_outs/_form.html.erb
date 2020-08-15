@@ -12,6 +12,7 @@
         </div>
       <% end %>
 
+      <% if @hang_out_name.nil? %>
       <div class="field">
         <%= form.label :name, "名前" %>
         <div class="row justify-content-center">
@@ -20,6 +21,15 @@
           </div>
         </div>
       </div>
+      <% else %>
+        <%= form.label :name, "名前" %>
+        <h3><%= @hang_out_name %>がレコメンドされています</h3>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= form.text_field :name, value: @hang_out_name, class: 'form-control', required: true  %>
+          </div>
+        </div>
+      <% end %>
 
       <div class="field">
         <%= form.label :date, "いつ？" %>

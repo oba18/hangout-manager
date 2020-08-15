@@ -20,6 +20,14 @@ Rails.application.routes.draw do
   # user_personal 系
   resources :user_personals
   get "user_personals/:id/json", :to => "user_personals#get_json"
+
+  # recommend 系
+  get "recommend_one/:id", :to => "hang_outs#recommend_one"
+  get "recommend_two/:id", :to => "hang_outs#recommend_two"
+  get "recommend_three/:id", :to => "hang_outs#recommend_three"
+  get "recommend_four/:id", :to => "hang_outs#recommend_four"
+  get "recommend_five/:id", :to => "hang_outs#recommend_five"
+  get "recommend_create", :to => "hang_outs#recommend_create", as: 'recommend_create'
   
   # フォロー系
   resources :relationships, only: [:create, :destroy]
