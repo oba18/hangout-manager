@@ -4,7 +4,7 @@
   <br>
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>
-    <label class="tab_item" for="all">全て</label>
+    <label class="tab_item" for="all">おすすめ</label>
 
     <input id="label0" type="radio" name="tab_item">
     <label class="tab_item" for="label0">募集中</label>
@@ -19,6 +19,7 @@
       <div class="tab_content_description">
         <% @hang_outs.reload %>
         <%= render 'hang_outs/table', hang_outs: @hang_outs %>
+        <%= link_to "友達をレコメンドする", "http://localhost:3000/get_current/#{@recommend_user.id}", { class: 'btn btn-outline-primary w-25' }  %>
       </div>
     </div>
 
@@ -45,5 +46,4 @@
   </div>
   <br>
   <%= link_to "あそびを追加する", new_hang_out_path, { class: 'btn btn-outline-primary w-25' }  %>
-  <%= link_to "友達をレコメンドする", "http://localhost:3000/get_current/#{@recommend_user.id}", { class: 'btn btn-outline-primary w-25' }  %>
 </div>
