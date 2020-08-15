@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_14_173253) do
+ActiveRecord::Schema.define(version: 2020_08_15_035406) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
@@ -83,9 +83,6 @@ ActiveRecord::Schema.define(version: 2020_08_14_173253) do
     t.integer "p_one"
     t.integer "p_two"
     t.integer "p_three"
-    t.integer "p_four"
-    t.integer "p_five"
-    t.integer "p_six"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

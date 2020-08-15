@@ -1,0 +1,6 @@
+<div class=pad70>
+  <h1><%= @genre %>がレコメンドされました</h1>
+  <h1><%= @hang_out_name_1 %>はいかがですか？</h1>
+
+  <%= link_to "#{@hang_out_name_1}であそぶ", new_hang_out_path(hang_out_name: @hang_out_name_1), { class: 'btn btn-outline-primary btn-lg btn-block' } %>
+  <%= link_to "いいえ", "http://localhost:3000/recommend_two/#{@question.id}", { class: 'btn btn-outline-primary btn-lg btn-block' } %>

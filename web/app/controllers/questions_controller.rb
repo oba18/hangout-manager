@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.user_id = current_user.id
     @question.save
-    redirect_to "http://localhost:3000/questions/#{@question.id}"
+    redirect_to "http://localhost:3000/recommend_one/#{@question.id}"
   end
 
   # PATCH/PUT /questions/1

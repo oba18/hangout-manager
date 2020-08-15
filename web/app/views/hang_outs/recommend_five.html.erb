@@ -1,0 +1,6 @@
+<div class=pad70>
+  <h1>では<%= @hang_out_name_5 %>はいかがですか？</h1>
+
+  <%= link_to "#{@hang_out_name_5}であそぶ", new_hang_out_path(hang_out_name: @hang_out_name_5), { class: 'btn btn-outline-primary btn-lg btn-block' } %>
+  <%= link_to "みんなのあそびを見に行く", "http://localhost:3000/hang_outs", { class: 'btn btn-outline-primary btn-lg btn-block' } %>
+  <%= link_to "自分であそびをつくる", "http://localhost:3000/hang_outs/new", { class: 'btn btn-outline-primary btn-lg btn-block' } %>

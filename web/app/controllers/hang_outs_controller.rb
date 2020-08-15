@@ -50,6 +50,9 @@ class HangOutsController < ApplicationController
   # GET /hang_outs/new
   def new
     @hang_out = HangOut.new
+    unless params[:hang_out_name].nil?
+      @hang_out_name = params[:hang_out_name]
+    end
   end
 
   # GET /hang_outs/1/edit
@@ -74,6 +77,47 @@ class HangOutsController < ApplicationController
     #   end
     # end
     redirect_to "http://localhost:3000/hang_outs"
+  end
+
+  def recommend_one
+    @question = Question.find(params[:id])
+    uri = URI.parse("http://recommend:5000/questions/#{@question.id}")
+    json = Net::HTTP.get(uri)
+    @recommend = JSON.parse(json)
+    @hang_out_name_1 = @recommend['a1']
+    @genre = @recommend['ge']
+  end
+
+  def recommend_two
+    @question = Question.find(params[:id])
+    uri = URI.parse("http://recommend:5000/questions/#{@question.id}")
+    json = Net::HTTP.get(uri)
+    @recommend = JSON.parse(json)
+    @hang_out_name_2 = @recommend['a2']
+  end
+
+  def recommend_three
+    @question = Question.find(params[:id])
+    uri = URI.parse("http://recommend:5000/questions/#{@question.id}")
+    json = Net::HTTP.get(uri)
+    @recommend = JSON.parse(json)
+    @hang_out_name_3 = @recommend['a3']
+  end
+
+  def recommend_four
+    @question = Question.find(params[:id])
+    uri = URI.parse("http://recommend:5000/questions/#{@question.id}")
+    json = Net::HTTP.get(uri)
+    @recommend = JSON.parse(json)
+    @hang_out_name_4 = @recommend['a4']
+  end
+
+  def recommend_five
+    @question = Question.find(params[:id])
+    uri = URI.parse("http://recommend:5000/questions/#{@question.id}")
+    json = Net::HTTP.get(uri)
+    @recommend = JSON.parse(json)
+    @hang_out_name_5 = @recommend['a5']
   end
 
   # PATCH/PUT /hang_outs/1
