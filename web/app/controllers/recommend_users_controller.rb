@@ -30,7 +30,8 @@ class RecommendUsersController < ApplicationController
 
   def to_current_json
     @recommend_user = RecommendUser.find(params[:id])
-    render json: @recommend_user
+    @user_personal = UserPersonal.find_by(user_id: @recommend_user.user_id)
+    render json: @user_personal
   end
 
   def get_current
