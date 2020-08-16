@@ -18,8 +18,10 @@ def get_hangout(hang_out_id):
 def get_current_user(user_id):
     url = 'http://web:3000/to_current/' + user_id + '/json'
     res = http.request('GET',url)
-    data = res.data.decode('utf-8')
+    data = json.loads(res.data.decode('utf-8'))
+    current_list = [data['p_one'], data['p_two'], data['p_three'], data['p_four'], data['user_id']]
     print (data)
+    print (current_list)
     return res.data.decode('utf-8')
 
 @app.route("/questions/<question_id>")
@@ -96,6 +98,30 @@ def get_users():
 
     print (user_list) # user_list->Userの情報[p_one, p_two, p_three, p_four, user_id]
     return res.data.decode('utf-8')
+
+@app.route("/friend/<current_user_id>")
+def get_friend(current_user_id):
+    url_all = 'http://web:3000/user_all/json'
+    res_all = http.request('GET',url_all)
+    users_json = json.loads(res_all.data.decode('utf-8'))
+    user_list = []
+    user_personal_list = []
+    for i in range(len(users_json['user_personals'])):
+        user_personal_list += [users_json['user_personals'][i]['p_one']]
+        user_personal_list += [users_json['user_personals'][i]['p_two']]
+        user_personal_list += [users_json['user_personals'][i]['p_three']]
+        user_personal_list += [users_json['user_personals'][i]['p_four']]
+        user_personal_list += [users_json['user_personals'][i]['user_id']]
+        user_list += [user_personal_list]
+        user_personal_list = []
+
+    url_current = 'http://web:3000/to_current/' + current_user_id + '/json'
+    res_current = http.request('GET',url_current)
+    current_json = json.loads(res_current.data.decode('utf-8'))
+    current_list = [current_json['p_one'], current_json['p_two'], current_json['p_three'], current_json['p_four'], current_json['user_id']]
+    print (user_list)
+    print (current_list)
+    return 'hello'
 
 ## おまじない
 if __name__ == "__main__":
