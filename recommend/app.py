@@ -4,6 +4,7 @@ import json
 import urllib3
 
 from main import RecommendHangout
+from main import RecommendFriends
 
 app = Flask(__name__)
 http = urllib3.PoolManager()
@@ -119,11 +120,21 @@ def get_friend(current_user_id):
     res_current = http.request('GET',url_current)
     current_json = json.loads(res_current.data.decode('utf-8'))
     current_list = [current_json['p_one'], current_json['p_two'], current_json['p_three'], current_json['p_four'], current_json['user_id']]
-    print (user_list)
-    print (current_list)
-    return 'hello'
+    
+    rf = RecommendFriends(user_list,current_list)
+    rf_rank = rf.forward()   
+    return_rank = dict(ID0=int(rf_rank[0,1]),
+                       ID1=int(rf_rank[1,1]),
+                       ID2=int(rf_rank[2,1]),
+                       ID3=int(rf_rank[3,1]),
+                       ID4=int(rf_rank[4,1]),
+                       ID5=int(rf_rank[5,1]),
+                       ID6=int(rf_rank[6,1]),
+                       ID7=int(rf_rank[7,1]),
+                       ID8=int(rf_rank[8,1]),
+                       ID9=int(rf_rank[9,1]))    
+    return return_rank
 
 ## おまじない
 if __name__ == "__main__":
     app.run(debug=True)
-
