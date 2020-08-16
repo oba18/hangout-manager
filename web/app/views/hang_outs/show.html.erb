@@ -63,6 +63,10 @@
   <br>
   <hr>
   <h3>コメント一覧</h3>
+  <% if @hang_out.comments.count == 0 %>
+    <br>
+    <p>まだコメントはありません</p>
+  <% else %>
   <div style="text-align:left">
     <div class="line-bc"><!--①LINE会話全体を囲う-->
       <% @hang_out.comments.each do |comment| %>
@@ -87,6 +91,7 @@
       <% end %>
     </div>
   </div>
+<% end %>
 
   <br>
   <div class="balloon2-left">

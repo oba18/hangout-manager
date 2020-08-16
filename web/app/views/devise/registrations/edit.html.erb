@@ -23,6 +23,25 @@
           </div>
         </div>
       </div>
+      <br>
+      <div class="field">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.label :age, "年齢" %>
+            <%= f.number_field :age, { class: 'form-control', required: true } %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="field">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= f.label :sex, "性別" %>
+            <%= f.select :sex, User.sexes.keys, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          </div>
+        </div>
+      </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
