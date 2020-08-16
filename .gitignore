@@ -25,3 +25,4 @@
 
 # Ignore master key for decrypting credentials and more.
 /web/config/master.key
+/recommend/__pycache__

@@ -10,10 +10,23 @@ class HangOutsController < ApplicationController
     @hang_outs_label_0 = HangOut.where(label: 0).order(created_at: "DESC")
     @hang_outs_label_1 = HangOut.where(label: 1).order(created_at: "DESC")
     @hang_outs_label_2 = HangOut.where(label: 2).order(created_at: "DESC")
-
     @recommend_user = RecommendUser.new
     @recommend_user.user_id = current_user.id
     @recommend_user.save
+    @r_user = RecommendUser.where(user_id:current_user.id).order(updated_at: :desc).limit(1)
+    uri = URI.parse("http://recommend:5000/friend/#{@r_user.ids[0]}")
+    json = Net::HTTP.get(uri)
+    @recommend_users = JSON.parse(json)
+    @r_u0 = User.find(@recommend_users["ID0"])
+    @r_u1 = User.find(@recommend_users["ID1"])
+    @r_u2 = User.find(@recommend_users["ID2"])
+    @r_u3 = User.find(@recommend_users["ID3"])
+    @r_u4 = User.find(@recommend_users["ID4"])
+    @r_u5 = User.find(@recommend_users["ID5"])
+    @r_u6 = User.find(@recommend_users["ID6"])
+    @r_u7 = User.find(@recommend_users["ID7"])
+    @r_u8 = User.find(@recommend_users["ID8"])
+    @r_u9 = User.find(@recommend_users["ID9"])
   end
 
   def get_json
@@ -31,8 +44,8 @@ class HangOutsController < ApplicationController
     @comments = @hang_out.comments
     @comment = current_user.comments.new
 
-    # jsonを受け取る機能
-    uri = URI.parse("http://recommend:5000/hangouts/#{@hang_out.id}")
+    # jsonを受け取る機能(
+    uri = URI.parse("http://recommend:5000/friend/#{@hang_out.id}")
     # json = Net::HTTP.get_response(uri)
     json = Net::HTTP.get(uri)
     @response = JSON.parse(json)
@@ -41,6 +54,8 @@ class HangOutsController < ApplicationController
     @response_date = @response['date']
     @response_start_time = @response['start_time']
     @response_end_time = @response['end_time']
+
+
   end
 
   def confirm_like
