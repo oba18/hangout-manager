@@ -21,6 +21,7 @@ class FriendsRecModel(object):
         for i in range(len(self.entire)):
             self.euclid[i,0] = np.linalg.norm(self.entire[i,:4]-self.sub[0,:4])
             self.euclid[i,1] = self.entire[i,4]
+            
         
     def calc_cos_simi(self):
         for i in range(len(self.entire)):
@@ -45,14 +46,18 @@ class FriendsRecModel(object):
         self.eval_sort = self.eval_val[self.eval_val[:,0].argsort(),:][::-1]
         
     def forward(self, entire, sub):
-        self.euclid = np.zeros((len(entire),2))
-        self.cos_simi = np.zeros((len(entire),2))
         self.entire = np.array(entire).reshape(-1,5)
         self.sub = np.array(sub).reshape(-1,5)
         self.id_check()
+        self.euclid = np.zeros((len(self.entire),2))
+        self.cos_simi = np.zeros((len(self.entire),2))
+        print (len(self.entire))
         
         self.calc_euclid()
         self.calc_cos_simi()
+        print (self.euclid)
+        print (self.cos_simi)
         self.calc_eval()
         self.sort_eval()
+        print (self.eval_sort)
         return self.eval_sort

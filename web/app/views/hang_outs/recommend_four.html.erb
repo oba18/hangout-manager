@@ -1,5 +1,11 @@
-<div class=pad70>
-  <h1>では<%= @hang_out_name_4 %>はいかがですか？</h1>
-
-  <%= link_to "#{@hang_out_name_4}であそぶ", new_hang_out_path(hang_out_name: @hang_out_name_4), { class: 'btn btn-outline-primary btn-lg btn-block' } %>
-  <%= link_to "いいえ", "http://localhost:3000/recommend_five/#{@question.id}", { class: 'btn btn-outline-primary btn-lg btn-block' } %>
+<div class=pad120>
+  <div class=center>
+  <h3>では</h3>
+  <br>
+  <div class=rh1><%= @hang_out_name_4 %>はいかがですか？</div>
+  <br>
+  <br>
+  <%= link_to "#{@hang_out_name_4}であそぶ", new_hang_out_path(hang_out_name: @hang_out_name_4), { class: 'btn btn-outline-primary btn-lg' } %>
+  <%= link_to "いいえ", "http://localhost:3000/recommend_five/#{@question.id}", { class: 'btn btn-outline-primary btn-lg' } %>
+  </div>
+</div>

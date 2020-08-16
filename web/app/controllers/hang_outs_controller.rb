@@ -17,6 +17,16 @@ class HangOutsController < ApplicationController
     uri = URI.parse("http://recommend:5000/friend/#{@r_user.ids[0]}")
     json = Net::HTTP.get(uri)
     @recommend_users = JSON.parse(json)
+    @r_u0 = User.find(@recommend_users["ID0"])
+    @r_u1 = User.find(@recommend_users["ID1"])
+    @r_u2 = User.find(@recommend_users["ID2"])
+    @r_u3 = User.find(@recommend_users["ID3"])
+    @r_u4 = User.find(@recommend_users["ID4"])
+    @r_u5 = User.find(@recommend_users["ID5"])
+    @r_u6 = User.find(@recommend_users["ID6"])
+    @r_u7 = User.find(@recommend_users["ID7"])
+    @r_u8 = User.find(@recommend_users["ID8"])
+    @r_u9 = User.find(@recommend_users["ID9"])
   end
 
   def get_json
