@@ -9,4 +9,5 @@
 4. `http://localhost:3000`にアクセス
 5. 新規作成 or ログイン
 
+# スクリーンショット
 [スクリーンショット](https://github.com/oba18/hangout-manager/issues/23)
