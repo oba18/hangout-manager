@@ -26,3 +26,6 @@
 # Ignore master key for decrypting credentials and more.
 /web/config/master.key
 /recommend/__pycache__
+
+/db
+.DS_Store
